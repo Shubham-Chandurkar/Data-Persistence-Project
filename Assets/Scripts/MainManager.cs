@@ -11,6 +11,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text ScoreText1;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -22,6 +23,8 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GlobalScript.instance.LoadInfo();
+        ScoreText1.text = "Best Score : " + GlobalScript.instance.bestPlayerName + " : " + GlobalScript.instance.bestPlayerPoints;
         ScoreText.text = GlobalScript.instance.playerName + $": Score : {m_Points}";
 
         const float step = 0.6f;
@@ -72,6 +75,8 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        GlobalScript.instance.playerPoints = m_Points;
+        GlobalScript.instance.SaveInfo();
         m_GameOver = true;
         GameOverText.SetActive(true);
     }

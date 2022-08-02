@@ -9,10 +9,12 @@ public class MenuManager : MonoBehaviour
 {
 
     public InputField fieldValueName;
+    public Text menuText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GlobalScript.instance.LoadInfo();
+        menuText.text = "Best Score : " + GlobalScript.instance.bestPlayerName + " : " + GlobalScript.instance.bestPlayerPoints;
     }
 
     // Update is called once per frame
